@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+	<title>Angular+Bootstrap CRUD</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type ="text/javascript" src = "browser_component/angular.js"></script>
+  </head>
+  <body>
+	<nav class='navbar navbar-default'>
+		<div class='container'>
+			<div class='navbar-header'>
+				<a class='navbar-brand' href="#">Angular+Bootstrap CRUD</a>
+			</div>
+			<ul class='nav navbar-nav'>
+				<li><a href='#'>Home</a></li>
+			</ul>
+		</div>		
+	</nav>
+	<div class='container' ng-controller='regController'>		
+		<div>
+			<h2>Registration Form</h2>
+			<form class="form-horizontal">								
+				<div class='form-group'>
+					<label class=' control-label col-sm-2' for='name'>Name :</label>
+					<div class='col-sm-5'>
+						<input type='text' class='form-control' ng-model='comms.name' name='name' id='name'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='control-label col-sm-2' for='email'>Email :</label>
+					<div class='col-sm-5'>						
+						<textarea ng-model='comms.emailList'></textarea>
+					</div>
+				</div>
+				</div>
+				
+				<div class='form-group'>
+					<div class='col-sm-offset-2 col-sm-5'>
+						<button type='button' ng-click='regSubmit();' class='btn btn-default'>Submitt</button>
+						<button type='button' ng-click='resetForm();' class='btn btn-info'>Reset</button>
+					</div>	
+				</div>
+			</form>
+		</div>		
+	</div>
+	<script>
+	
+		var myApp = angular.module('myApp',[]);
+		myApp.controller('regController',function($scope,$http){	
+			
+			$scope.regSubmit = function(){					
+				
+				/***************Email Validation Logic********************/
+				var forEmailList = $scope.comms;
+				var emailList = forEmailList.emailList;
+				var emailStatus = emailListValidation(emailList);
+				alert(emailStatus);
+				/****************************************/
+							
+			};				
+		});
+		function emailListValidation(emailList){
+			var emails = emailList.split(",");				
+			console.log("All enter email list =>"+emails);
+			var valid = true;
+				var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+				for (var i = 0; i < emails.length; i++) {
+					 if( emails[i] == "" || ! regex.test(emails[i])){
+						valid = false; //Wrong email block
+						console.log( emails[i] +' => '+valid);
+						 
+					 } else{
+						 //valid email block
+						console.log( emails[i] +' => true');
+					 }
+				}
+				return valid;
+		}
+	</script>
+  </body>
+</html>
