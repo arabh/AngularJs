@@ -2,7 +2,7 @@
 <html lang="en" ng-app='myApp'>
   <head>
     <meta charset="utf-8">
-	<title>Angular+Bootstrap CRUD</title>
+	<title>Angular+ multiple Email Validation</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 	<nav class='navbar navbar-default'>
 		<div class='container'>
 			<div class='navbar-header'>
-				<a class='navbar-brand' href="#">Angular+Bootstrap CRUD</a>
+				<a class='navbar-brand' href="#">Angular+ multiple Email Validation</a>
 			</div>
 			<ul class='nav navbar-nav'>
 				<li><a href='#'>Home</a></li>
@@ -21,7 +21,7 @@
 	</nav>
 	<div class='container' ng-controller='regController'>		
 		<div>
-			<h2>Registration Form</h2>
+			<h2>Email Validation Form</h2>
 			<form class="form-horizontal">								
 				<div class='form-group'>
 					<label class=' control-label col-sm-2' for='name'>Name :</label>
@@ -60,7 +60,10 @@
 				alert(emailStatus);
 				/****************************************/
 							
-			};				
+			};	
+			$scope.resetForm=function(){
+				  $scope.comms = {};			
+			  };
 		});
 		function emailListValidation(emailList){
 			var emails = emailList.split(",");				
